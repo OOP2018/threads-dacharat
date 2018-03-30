@@ -54,9 +54,9 @@ If you withdraw money in the same purse and same time. If purse balance is 1 bah
 
 ## 5. Counter with AtomicLong
 
-5.1) Because AtomicLong will minimize 3 things(load,change,replace) very small that you can't call method on the same time.
+5.1) Because AtomicLong is the safe thread for long.
 
-5.2) Because AtomicLong will minimize 3 things(load,change,replace) very small that you can't call method on the same time. It should use when threads more than one thread use same resource.
+5.2) Because AtomicLong is use in program that incremented sequence numbers and cannot be replace in Long.
 
 ## 6. Analysis of Results
 
@@ -65,3 +65,12 @@ If you withdraw money in the same purse and same time. If purse balance is 1 bah
 6.2) Synchronized because it can use flexible and runtime is less than other solutions.
 
 ## 7. Using Many Threads (optional)
+
+| Counter class           | Limit              | Runtime (sec)   |
+|:------------------------|:-------------------|-----------------|
+| Unsynchronized counter  |   10000            | 0.017370        |
+| Using ReentrantLock     |   10000            | 0.025915        |
+| Syncronized method      |   10000            | 0.018416        |
+| AtomicLong for total    |   10000            | 0.009190        |
+
+From table, AtomicLong is the fastest and ReentrantLock is the slowest.
